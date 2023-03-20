@@ -9,3 +9,11 @@ export function registerRequest(user) {
         data: { user },
     });
 }
+
+export function loginRequest(user){
+    return RequestManager.instance.request({
+        url:'/users/login',
+        method:'post',
+        data:{user}
+    })
+}

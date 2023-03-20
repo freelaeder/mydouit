@@ -4,10 +4,10 @@ import Banner from "@pages/homepage/banner";
 import MainView from "@pages/homepage/mainView";
 import Sidebar from "@pages/homepage/sidebar";
 import {Helmet} from "react-helmet";
-import {Outlet} from "react-router-dom";
+import {Navigate, Outlet} from "react-router-dom";
+import {connect} from "react-redux";
 
-
-export default class HomePage extends React.Component {
+ class HomePage extends React.Component {
 
     render() {
         return (
@@ -16,8 +16,8 @@ export default class HomePage extends React.Component {
                     <title>conduit - Home Page</title>
                     <meta name="description" content="a place to share knowledge" />
                 </Helmet>
-                <h1>outlet</h1>
-                <Outlet />
+                {/*<h1>outlet</h1>*/}
+                {/*<Outlet />*/}
                 <Banner/>
                 <div className="container page">
                     <div className="row">
@@ -33,3 +33,7 @@ export default class HomePage extends React.Component {
         );
     }
 }
+
+
+
+export default connect()(HomePage)
