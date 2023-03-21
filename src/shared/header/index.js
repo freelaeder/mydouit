@@ -1,6 +1,6 @@
 // 应用头部组件: src/shared/header/index.js
 import React from "react";
-import {Link, NavLink} from "react-router-dom";
+import {Link} from "react-router-dom";
 import {connect} from "react-redux";
 import LoginView from "@shared/header/loginView";
 import LogoutView from "@shared/header/logoutView";
