@@ -9,17 +9,17 @@ export const getArticlesListCreator = (http) => async (dispatch) => {
     // 捕获错误
     try {
         const res = await http()
-        dispatch({
+        return dispatch({
             type: types.REQUEST_ARTICLES_SUCCESS,
             payload: {articles: res?.articles}
         })
 
     } catch (e) {
         if (e instanceof AxiosError) {
-            dispatch({
+            return Promise.reject(dispatch({
                 type: types.REQUEST_ARTICLES_ERROR,
                 payload: {error: e.response?.data.errors},
-            })
+            }))
         }
     }
 

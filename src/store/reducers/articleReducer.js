@@ -1,5 +1,5 @@
 import * as ArtTypes from '../types/articleTypes'
-import {arraytoDics, arrayToDictionary} from "@utils/arraytoDis";
+import { arrayToDictionary} from "@utils/arraytoDis";
 const initialState = {
     activeTabName:'Your Feed',
     articles :{

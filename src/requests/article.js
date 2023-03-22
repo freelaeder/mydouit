@@ -11,3 +11,19 @@ export function articlesRequest(params={}){
 export function followAuthorArticlesRequest() {
     return RequestManager.instance.request({ url: "/articles/feed" });
 }
+
+
+// 文章点赞
+export function favoriteRequest(slug) {
+    return RequestManager.instance.request({
+        url: `/articles/${slug}/favorite`,
+        method: "post",
+    });
+}
+// 取消文章点赞
+export function unFavoriteRequest(slug) {
+    return RequestManager.instance.request({
+        url: `/articles/${slug}/favorite`,
+        method: "delete",
+    });
+}

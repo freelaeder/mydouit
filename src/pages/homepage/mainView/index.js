@@ -9,26 +9,28 @@ import Articles from "@shared/articles";
 class MainView extends React.Component {
     componentDidMount() {
         const {token} = this.props
-        if(token){
+        if (token) {
             this.getFollowArticles()
-        }else {
+        } else {
             this.getGloBalArticles()
         }
 
     }
 
     getFollowArticles = () => {
-        const {setArticleCreator,getArticlesListCreator} = this.props
+        const {setArticleCreator, getArticlesListCreator} = this.props
         setArticleCreator('Your Feed')
         getArticlesListCreator(followAuthorArticlesRequest)
     }
     getGloBalArticles = () => {
-        const {setArticleCreator,getArticlesListCreator} = this.props
+        const {setArticleCreator, getArticlesListCreator} = this.props
         setArticleCreator('Global Feed')
         getArticlesListCreator(articlesRequest)
     }
+
     render() {
-        const {token,activeTabName} = this.props
+        const {token, activeTagName,activeTabName} = this.props
+        console.log(activeTagName,'activeTagname')
         return (
             <>
                 <div className="feed-toggle">
@@ -43,9 +45,17 @@ class MainView extends React.Component {
                         <TabItems active={activeTabName === 'Global Feed'} onClick={this.getGloBalArticles}>
                             Global feed
                         </TabItems>
+                        {
+                            activeTabName === 'Tag Feed' && (
+                                <TabItems active={true} onClick={this.getGloBalArticles}>
+                                    {activeTagName}
+                                </TabItems>
+                            )
+                        }
+
                     </Tabs>
                 </div>
-                <Articles />
+                <Articles/>
 
             </>
         );
@@ -54,5 +64,6 @@ class MainView extends React.Component {
 
 export default connect((state) => ({
     token: state.userReducer.user.token,
-    activeTabName: state.articleReducer.activeTabName
-}), {setArticleCreator,getArticlesListCreator})(MainView)
+    activeTabName: state.articleReducer.activeTabName,
+    activeTagName: state.tagReducer.activeTagName
+}), {setArticleCreator, getArticlesListCreator})(MainView)
