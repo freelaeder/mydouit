@@ -1,22 +1,19 @@
 import {Navigate} from "react-router-dom";
 import HomePage from "@pages/homepage";
 import RegisterPage from "@pages/registerPage";
-import News from "@pages/homepage/news";
 import LoginPage from "@pages/loginPage";
+import ArticlePage from "@pages/articlePage";
 
 export default [
     {
         path:'/home',
         element: <HomePage />,
-        children:[
-            {
-                path:'news',
-                element:<News/>
-
-            }
-        ]
-
     },
+    {
+        path: '/article/:slug',
+        element: <ArticlePage/>
+    },
+
     {
         path: '/register',
         element: <RegisterPage/>

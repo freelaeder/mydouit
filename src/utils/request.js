@@ -12,7 +12,7 @@ export default class RequestManager {
         // 添加请求拦截器
         this._instance.interceptors.request.use(this._setupTokenToRequestHeader);
         // 添加响应拦截器
-        this._instance.interceptors.response.use(this._peelOffAxiosResponse);
+        this._instance.interceptors.response.use(this._peelOffAxiosResponse,this._unauthorized);
     }
     // 用于获取单例对象的静态方法
     static get instance() {
@@ -38,6 +38,23 @@ export default class RequestManager {
     // 响应拦截器 -> 去除 axios 响应对象, 直接返回服务端数据
     _peelOffAxiosResponse(response) {
         return response.data;
+    }
+    // 处理未授权
+    _unauthorized(error) {
+        // 401 表示未授权
+        if (error.response?.status === 401) {
+            // 从 location 对象中获取请求路径、查询参数、Hash地址
+            // 目的是使用它们拼接完整的回跳地址, 在用户登录成功后使用
+            // console.log(error,'unauthor')
+            // const { pathname, search, hash } = history.location;
+            // // 跳转到登录页面
+            // history.push({
+            //     pathname: "/login",
+            //     redirectURL: pathname + search + hash,
+            // });
+        }
+        // 将错误传递下去
+        return Promise.reject(error);
     }
     // 向外部开放的请求方法
     request(config) {

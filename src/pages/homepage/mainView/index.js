@@ -2,7 +2,7 @@
 import React from "react";
 import {TabItems, Tabs} from "@shared/tabs";
 import {connect} from "react-redux";
-import {getArticlesListCreator, setArticleCreator} from "@store/creator/articlecreator";
+import {getArticlesListCreator, setArticleCreator, updateActiveIndex} from "@store/creator/articlecreator";
 import {articlesRequest, followAuthorArticlesRequest} from "@requests/article";
 import Articles from "@shared/articles";
 
@@ -15,22 +15,26 @@ class MainView extends React.Component {
             this.getGloBalArticles()
         }
 
+
     }
 
     getFollowArticles = () => {
-        const {setArticleCreator, getArticlesListCreator} = this.props
+        const {setArticleCreator, getArticlesListCreator,updateActiveIndex} = this.props
         setArticleCreator('Your Feed')
         getArticlesListCreator(followAuthorArticlesRequest)
+        // 如果点击了切换列表，重置index为0
+        updateActiveIndex(0)
     }
     getGloBalArticles = () => {
-        const {setArticleCreator, getArticlesListCreator} = this.props
+        const {setArticleCreator, getArticlesListCreator,updateActiveIndex} = this.props
         setArticleCreator('Global Feed')
         getArticlesListCreator(articlesRequest)
+        // 如果点击了切换列表，重置index为0
+        updateActiveIndex(0)
     }
 
     render() {
-        const {token, activeTagName,activeTabName} = this.props
-        console.log(activeTagName,'activeTagname')
+        const {token, activeTagName, activeTabName} = this.props
         return (
             <>
                 <div className="feed-toggle">
@@ -66,4 +70,4 @@ export default connect((state) => ({
     token: state.userReducer.user.token,
     activeTabName: state.articleReducer.activeTabName,
     activeTagName: state.tagReducer.activeTagName
-}), {setArticleCreator, getArticlesListCreator})(MainView)
+}), {setArticleCreator, getArticlesListCreator, updateActiveIndex})(MainView)

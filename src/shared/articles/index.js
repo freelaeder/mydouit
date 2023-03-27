@@ -7,11 +7,11 @@ class Articles extends Component {
         const {articles: {status, result, error}} = this.props
         // 将文章字典转换为文章数组
         const articlesArray = Object.values(result);
-        console.log(articlesArray,'array')
         return <>
             {
                 status === 'padding' ? <div> data padding</div> : status === 'error' ?
-                    <div>error </div> : articlesArray.length === 0 ? <div> list emtry</div> : articlesArray.map(item => <Article key={item.slug} {...item}  />)
+                    <div>error </div> : articlesArray.length === 0 ? <div> list emtry</div> : articlesArray.map(item =>
+                        <Article key={item.slug} {...item}  />)
             }
 
         </>

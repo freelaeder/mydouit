@@ -3,6 +3,8 @@ import React from "react";
 import {connect} from "react-redux";
 import classNames from "classnames";
 import {favoriteRequest, unFavoriteRequest} from "@requests/article";
+import {updateArticlesSlugCreator} from "@store/creator/articlecreator";
+import {Link} from "react-router-dom";
 
 class Article extends React.Component {
     state = {
@@ -22,6 +24,9 @@ class Article extends React.Component {
         })
         try {
             const res = await (this.props.favorited ? unFavoriteRequest(slug) : favoriteRequest(slug))
+            // 更新本地状态
+            const {updateArticlesSlugCreator} = this.props
+            updateArticlesSlugCreator(res.article)
             console.log(res,'slug')
             this.setState({
                 favoriteRequestStatus: 'success',
@@ -49,7 +54,7 @@ class Article extends React.Component {
         return (
             <div className="article-preview">
                 <div className="article-meta">
-                    <a href="">
+                    <a  href="" >
                         <img src={image} alt=""/>
                     </a>
                     <div className="info">
@@ -67,14 +72,18 @@ class Article extends React.Component {
                         <i className="ion-heart"></i> {favoritesCount}
                     </button>
                 </div>
-                <a href="" className="preview-link">
-                    <h1>{title}</h1>
+                <div  className="preview-link">
+                    <Link  id="RouterNavLink"  to={`/article/${slug}`}>
+                        <h1>{title}</h1>
+                    </Link>
                     <p>{body}</p>
                     <span>Read more...</span>
-                </a>
+                </div >
             </div>
         );
     }
 }
 
-export default connect()(Article)
+export default connect(undefined,{
+    updateArticlesSlugCreator
+})(Article)

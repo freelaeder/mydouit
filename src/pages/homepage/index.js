@@ -6,15 +6,16 @@ import Sidebar from "@pages/homepage/sidebar";
 import {Helmet} from "react-helmet";
 import {Navigate, Outlet} from "react-router-dom";
 import {connect} from "react-redux";
+import Nav from "@pages/homepage/nav";
 
- class HomePage extends React.Component {
+class HomePage extends React.Component {
 
     render() {
         return (
             <div className="home-page">
                 <Helmet>
                     <title>conduit - Home Page</title>
-                    <meta name="description" content="a place to share knowledge" />
+                    <meta name="description" content="a place to share knowledge"/>
                 </Helmet>
                 {/*<h1>outlet</h1>*/}
                 {/*<Outlet />*/}
@@ -22,18 +23,19 @@ import {connect} from "react-redux";
                 <div className="container page">
                     <div className="row">
                         <div className="col-md-9">
-                            <MainView />
+                            <MainView/>
                         </div>
                         <div className="col-md-3">
-                            <Sidebar />
+                            <Sidebar/>
                         </div>
                     </div>
+                    {/*底部列表按钮*/}
+                    <Nav/>
                 </div>
             </div>
         );
     }
 }
-
 
 
 export default connect()(HomePage)
