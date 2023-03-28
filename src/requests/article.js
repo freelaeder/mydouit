@@ -57,3 +57,29 @@ export function deleteCommentRequest(slug, id) {
         method: "delete",
     });
 }
+
+// 发布文章
+export function publishArticleRequest(article) {
+    return RequestManager.instance.request({
+        url: "/articles",
+        method: "post",
+        data: { article },
+    });
+}
+
+// 删除文章
+export function deleteArticleRequest(slug) {
+    return RequestManager.instance.request({
+        url: `/articles/${slug}`,
+        method: "delete",
+    });
+}
+
+// 修改发布文章
+export function updateArticleRequest(slug, article) {
+    return RequestManager.instance.request({
+        url: `/articles/${slug}`,
+        method: "put",
+        data: { article },
+    });
+}

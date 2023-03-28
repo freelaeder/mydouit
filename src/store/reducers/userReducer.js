@@ -4,7 +4,7 @@ import {save_user} from "@types/userTypes";
 const initialState = {
     // 用户信息
     user: {},
-    name:{}
+    name:'f1'
 };
 
 export default function userReducer(state = initialState, action) {

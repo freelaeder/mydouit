@@ -9,3 +9,4 @@ export const REQUEST_ARTICLE_BY_SLUG = "文章/获取文章详情";
 export const REQUEST_ARTICLE_BY_SLUG_SUCCESS = "文章/获取文章详情成功";
 export const REQUEST_ARTICLE_BY_SLUG_ERROR = "文章/获取文章详情失败";
 export const UPDATE_ACTIVE_INDEX = "update/Index"
+export const RESET_ARTICLE = "文章详情/重置文章详情";

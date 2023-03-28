@@ -7,7 +7,7 @@ class ArticleBanner extends Component {
             <div className="banner">
                 <div className="container">
                     <h1>{this.props.title}</h1>
-                    {/*<ArticleMeta />*/}
+                    <ArticleMeta />
                 </div>
             </div>
         );

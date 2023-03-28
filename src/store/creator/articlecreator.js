@@ -46,3 +46,5 @@ export const updateAuthorProfile = (profile) => ({type: profileTypes.UPDATE_PROF
 
 // 更新下标
 export const updateActiveIndex = (index) => ({type: types.UPDATE_ACTIVE_INDEX, payload: index})
+// 重置文章详情
+export const resetArticles = () => ({type: types.RESET_ARTICLE})

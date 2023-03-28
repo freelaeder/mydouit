@@ -1,7 +1,7 @@
 import * as ArtTypes from '../types/articleTypes'
 import * as profileTypes from '@types/profileTypes'
 import * as commentTypes from '../types/commentsTypes'
-import { arrayToDictionary} from "@utils/arraytoDis";
+import {arrayToDictionary} from "@utils/arraytoDis";
 // 初始状态
 const initialState = {
     // 文章详情
@@ -106,20 +106,24 @@ export function detailReducer(state = initialState, action) {
                     ...state.comment,
                     result: {
                         ...state.comment.result,
-                        [payload.comment.id]:payload.comment
+                        [payload.comment.id]: payload.comment
                     }
                 }
             }
         case commentTypes.DELETE_COMMENTS:
             const newResult = {...state.comment.result}
             delete newResult[payload.id]
-            console.log(payload,'payload')
+            console.log(payload, 'payload')
             return {
                 ...state,
                 comment: {
                     ...state.comment,
-                    result:newResult
+                    result: newResult
                 }
+            }
+        case ArtTypes.RESET_ARTICLE:
+            return {
+                ...initialState
             }
         default:
             return state
